@@ -26,6 +26,6 @@ export const Reducer = (state=initialState, action) =>{
       };
       default:
         return state;
-  };
+  }
 };
 
