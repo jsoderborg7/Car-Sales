@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {Reducer} from '../reducers/Reducer';
+
 
 const Total = props => {
   return (
@@ -8,4 +11,11 @@ const Total = props => {
   );
 };
 
-export default Total;
+const mapStateToProps = state =>{
+  return{
+    priceOnProps: state.car.price,
+    additionalPriceOnProps: state.additionalPrice
+  };
+};
+
+export default connect(mapStateToProps, {Reducer})(Total);
