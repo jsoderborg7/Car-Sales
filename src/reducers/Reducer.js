@@ -16,14 +16,14 @@ const initialState = {
 };
 
 export const Reducer = (state=initialState, action) =>{
-  console.log('reducer state', state);
 
   switch (action.type){
     case "ADD_FEATURES":
       return{
         ...state,
-        additionalPrice: state.additionalPrice + action.payload
-      }
+        additionalPrice: state.additionalPrice + action.payload.price,
+        car: {...state.car, features:[...state.car.features, action.payload]}
+      };
       default:
         return state;
   };
