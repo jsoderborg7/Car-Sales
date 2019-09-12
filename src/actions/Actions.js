@@ -1,28 +1,18 @@
-export const addFeature = add =>{
-  return{
-    type: "ADD_FEATURES",
-    payload: add
-  };
-};
+export const BUY_ITEM = "BUY_ITEM";
+export const REMOVE_ITEM = "REMOVE_ITEM";
 
-export const removeFeature = item =>{
+export const buyItem = item =>{
+  console.log("testing add", item);
   return{
-    type: "REMOVE_FEATURE",
+    type: "BUY_ITEM",
     payload: item
   };
 };
 
-export const addPrice = price =>{
+export const removeItem = item =>{
+  console.log("testing remove", item);
   return{
-    type: "ADD_PRICE",
-    payload: price
+    type: "REMOVE_ITEM",
+    payload: item
   };
 };
-
-export const removePrice = price =>{
-  return{
-    type: "REMOVE_PRICE",
-    payload: price
-  };
-};
-
