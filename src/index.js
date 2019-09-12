@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import {Reducer} from './reducers/Reducer';
+import {appReducer} from './reducers/Reducer';
 
 import 'bulma/css/bulma.css';
 import './styles.scss';
 
-const store = createStore(Reducer);
+const store = createStore(appReducer);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(

@@ -24,23 +24,23 @@ const App = (props) => {
     ]
   };
 
-  const removeFeature = item => {
-    // dispatch an action here to remove an item
+  const removeFeature = id => {
+    
   };
 
   const buyItem = item => {
-    // dipsatch an action here to add an item
+    
   };
   
   return (
     <div className="boxes">
       <div className="box">
-        <Header />
-        <AddedFeatures />
+        <Header car={state.car}/>
+        <AddedFeatures car={state.car}/>
       </div>
       <div className="box">
-        <AdditionalFeatures />
-        <Total />
+        <AdditionalFeatures store={state.store}/>
+        <Total car={state.car} additionalPrice={state.additionalPrice}/>
       </div>
     </div>
   );
