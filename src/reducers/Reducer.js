@@ -1,3 +1,5 @@
+import {BUY_ITEM, REMOVE_ITEM} from '../actions/Actions';
+
 const initialState = {
   additionalPrice: 0,
   car: {
@@ -18,25 +20,40 @@ const initialState = {
 export const appReducer = (state=initialState, action) =>{
 
   switch (action.type){
-    case "BUY_ITEM":
-      return{
+
+    case BUY_ITEM:
+
+      if (state.car.features.find(feature => feature.id === action.payload.id)) {
+        return state;
+      } else{
+      
+        return{
+
       ...state,
-      additionalPrice: state.additionalPrice + action.payload.price,
+
       car: {
         ...state.car,
+        price: state.car.price + action.payload.price,
         features: [...state.car.features, action.payload]
       }
-    };
+    }
+  };
 
-    case "REMOVE_ITEM":
+    case REMOVE_ITEM:
       return{
         ...state,
-        additionalPrice: state.additionalPrice - action.payload.price,
+        
         car: {
           ...state.car,
+          price: state.car.price - action.payload.price,
           features: state.car.features.filter(
-            feature => feature.id !== action.payload.id
-          )
+            feature => {
+              if(feature.id === action.payload.id){
+                return false;
+              } else {
+                return true;
+              }
+            })
         }
       };
 
