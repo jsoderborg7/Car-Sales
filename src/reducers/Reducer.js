@@ -16,37 +16,28 @@ const initialState = {
 };
 
 export const appReducer = (state=initialState, action) =>{
-  const updatePrice = [state.additionalPrice]
 
   switch (action.type){
-    case "ADD_FEATURES":
-      const storeFilter = state.store.filter(feature => feature !== action.payload)
+    case "BUY_ITEM":
       return{
-        ...state,
-        car: {...state.car, features:[...state.car.features, action.payload]},
-        store: storeFilter
-      };
+      ...state,
+      additionalPrice: state.additionalPrice + action.payload.price,
+      car: {
+        ...state.car,
+        features: [...state.car.features, action.payload]
+      }
+    };
 
-    case "REMOVE_FEATURE":
-      const newStore = [...state.store, action.payload];
+    case "REMOVE_ITEM":
       return{
         ...state,
-        car: {...state.car, features: state.car.features.filter(feature =>{return feature !== action.payload})},
-        store: newStore
-      };
-
-    case "ADD_PRICE":
-      const addReducer = ((num, total) =>{return num + total})
-      return{
-        ...state,
-        additionalPrice: updatePrice.reduce(addReducer, action.payload)
-      };
-
-    case "REMOVE_PRICE":
-      const removeReducer = ((num, total) =>{return total - num})
-      return{
-        ...state,
-        additionalPrice: updatePrice.reduce(removeReducer, action.payload)
+        additionalPrice: state.additionalPrice - action.payload.price,
+        car: {
+          ...state.car,
+          features: state.car.features.filter(
+            feature => feature.id !== action.payload.id
+          )
+        }
       };
 
       default:
